@@ -21,6 +21,12 @@ startButton.addEventListener("click", function() {
 
 function showQuestion() {
 
+   //Check if there are more questions
+   if (currentQuestion >= questions.length) {
+    endQuiz();
+    return;
+  }
+
   // Display the current question
   const question = questions[currentQuestion];
   questionTitle.textContent = question.question;
@@ -52,6 +58,15 @@ function checkAnswer(li, correctAnswer) {
   currentQuestion++;
   showQuestion();
 }
+
+function endQuiz() {
+  clearInterval(intervalId);
+  questionsScreen.classList.add("hide");
+  //finalScoreEl.textContent = score;
+  //initialsEl.value = "";
+  document.querySelector("#end-screen").classList.remove("hide");
+}
+
 
 //clearInterval(intervalId)
 
