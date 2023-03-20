@@ -7,7 +7,7 @@ const choicesEl = document.querySelector("#choices");
 const feedbackEl = document.querySelector("#feedback");
 
 //sets variables
-let timer = 60;
+let timer = 10;
 let currentQuestion = 0;
 let intervalId;
 
@@ -62,11 +62,8 @@ function checkAnswer(li, correctAnswer) {
 function endQuiz() {
   clearInterval(intervalId);
   questionsScreen.classList.add("hide");
-  //finalScoreEl.textContent = score;
-  //initialsEl.value = "";
   document.querySelector("#end-screen").classList.remove("hide");
 }
-
 
 //clearInterval(intervalId)
 
@@ -80,6 +77,7 @@ function startTimer() {
     document.getElementById("time").innerHTML = timer;
     if (timer <= 0) {
       clearInterval(intervalId);
+      endQuiz();
     }
   }, 1000);
 }
