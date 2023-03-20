@@ -5,11 +5,15 @@ const questionsScreen = document.querySelector("#questions");
 const questionTitle = document.querySelector("#question-title");
 const choicesEl = document.querySelector("#choices");
 const feedbackEl = document.querySelector("#feedback");
+const finalScoreEl = document.querySelector("#final-score");
+const initialsEl = document.querySelector("#initials");  
+const timerArea = document.querySelector(".timer");  
 
 //sets variables
-let timer = 10;
-let currentQuestion = 0;
-let intervalId;
+let timer = 60;
+let currentQuestion = 0;  
+let finalScore = 0;
+//let intervalId;
 
 //click event to hide start screen, show questions and start timer.
 startButton.addEventListener("click", function() {
@@ -59,12 +63,6 @@ function checkAnswer(li, correctAnswer) {
   showQuestion();
 }
 
-function endQuiz() {
-  clearInterval(intervalId);
-  questionsScreen.classList.add("hide");
-  document.querySelector("#end-screen").classList.remove("hide");
-}
-
 //clearInterval(intervalId)
 
 // countdown
@@ -72,12 +70,22 @@ document.getElementById("time").innerHTML = timer;
 
 // Start timer
 function startTimer() {
-  let intervalId = setInterval(function() {
+  intervalId = setInterval(function() {
     timer--;
     document.getElementById("time").innerHTML = timer;
     if (timer <= 0) {
-      clearInterval(intervalId);
       endQuiz();
     }
   }, 1000);
 }
+
+function endQuiz() {
+  clearInterval(intervalId);
+  questionsScreen.classList.add("hide");
+  let finalScore = timer;
+  finalScoreEl.textContent = timer;
+  initialsEl.value = "";
+  time.classList.add("hide");
+  document.querySelector("#end-screen").classList.remove("hide");
+}
+
