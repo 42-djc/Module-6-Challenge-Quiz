@@ -17,7 +17,7 @@ JavaScript based multiple choice quiz site that uses JavaScript to render questi
 
 ## Installation
 
-see webpage
+see webpage: https://42-djc.github.io/Module-6-Challenge-Quiz/
 
 ## Usage
 
