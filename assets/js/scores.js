@@ -1,4 +1,5 @@
-const highscoresList = document.getElementById("highscores");
+   const highscoresList = document.getElementById("highscores");
+   const clearButton = document.querySelector("#clear");
 
 window.onload = function() {
  
@@ -15,3 +16,8 @@ window.onload = function() {
       .join("");
   };
   
+
+clearButton.addEventListener("click", function() {
+  localStorage.removeItem("highScores");
+
+});

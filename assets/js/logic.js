@@ -9,7 +9,8 @@ const finalScoreEl = document.querySelector("#final-score");
 const initialsEl = document.querySelector("#initials");  
 const timerArea = document.querySelector(".timer");  
 const submitButton = document.querySelector("#submit");
-//const highScoresLink = document.querySelector(".scores a");
+const correctSound = new Audio('assets/sfx/correct.wav');
+const incorrectSound = new Audio('assets/sfx/incorrect.wav');
 
 //sets variables
 let timer = 60;
@@ -53,8 +54,10 @@ function showQuestion() {
 function checkAnswer(li, correctAnswer) {
   if (li.textContent === correctAnswer) {
     feedbackEl.textContent = "Correct!";
+    correctSound.play();
   } else {
     feedbackEl.textContent = "Wrong!";
+    incorrectSound.play();
     timer -= 10;
     if (timer < 0) {
       timer = 0;
