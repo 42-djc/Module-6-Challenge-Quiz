@@ -8,6 +8,8 @@ const feedbackEl = document.querySelector("#feedback");
 const finalScoreEl = document.querySelector("#final-score");
 const initialsEl = document.querySelector("#initials");  
 const timerArea = document.querySelector(".timer");  
+const submitButton = document.querySelector("#submit");
+//const highScoresLink = document.querySelector(".scores a");
 
 //sets variables
 let timer = 60;
@@ -79,13 +81,30 @@ function startTimer() {
   }, 1000);
 }
 
+//End quiz hides questions and displays the end screen where users can add initials and submit
+
 function endQuiz() {
   clearInterval(intervalId);
   questionsScreen.classList.add("hide");
   let finalScore = timer;
   finalScoreEl.textContent = timer;
   initialsEl.value = "";
-  time.classList.add("hide");
+  timerArea.classList.add("hide");
   document.querySelector("#end-screen").classList.remove("hide");
 }
+// Submit adds initial and sore info to local storage and redirects user to the high scores page
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  
+  const initials = initialsEl.value.trim();
+  if (initials === "") {
+    alert("Please enter your initials.");
+    return;
+  }
 
+  const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  highScores.push({ initials: initials, score: timer });
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  console.log(localStorage);
+  window.location.href = "highscores.html";
+});
