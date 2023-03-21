@@ -27,9 +27,8 @@ startButton.addEventListener("click", function() {
 });
 
 function showQuestion() {
-
-   //Check if there are more questions
-   if (currentQuestion >= questions.length) {
+  //Check if there are more questions
+  if (currentQuestion >= questions.length) {
     endQuiz();
     return;
   }
@@ -42,12 +41,13 @@ function showQuestion() {
   // Display the answer choices for the current question using a for loop and a click event to check answers
   for (let i = 0; i < question.choices.length; i++) {
     const choice = question.choices[i];
-    const li = document.createElement("li");
-    li.textContent = choice;
-    li.addEventListener("click", function() {
+    const button = document.createElement("button");
+    button.textContent = choice;
+    button.classList.add("choice");
+    button.addEventListener("click", function() {
       checkAnswer(this, question.correctAnswer);
     });
-    choicesEl.appendChild(li);
+    choicesEl.appendChild(button);
   }
 }
 //checks selected answer vs expected and feeds back.  reduces time if wrong.
@@ -61,7 +61,7 @@ function checkAnswer(li, correctAnswer) {
     timer -= 10;
     if (timer < 0) {
       timer = 0;
-    }
+    } 
   }
   feedbackEl.classList.remove("hide");
   currentQuestion++;

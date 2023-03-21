@@ -19,5 +19,5 @@ window.onload = function() {
 
 clearButton.addEventListener("click", function() {
   localStorage.removeItem("highScores");
-
+  location.reload();
 });
